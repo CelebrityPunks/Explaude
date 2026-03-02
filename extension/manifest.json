@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "ContX",
+  "version": "1.0.0",
+  "description": "Right-click any tweet to save it as context for Claude Code. Build AI context from your Twitter feed.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "contextMenus",
+    "storage",
+    "activeTab",
+    "downloads",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*",
+        "https://mobile.twitter.com/*"
+      ],
+      "js": ["content-scripts/twitter-scraper.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    },
+    "default_title": "ContX — Saved Tweets"
+  }
+}

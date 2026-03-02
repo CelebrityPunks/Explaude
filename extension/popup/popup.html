@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="popup.css">
+  <title>ContX</title>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-left">
+        <img src="../icons/icon32.png" alt="" class="logo">
+        <h1>ContX</h1>
+      </div>
+      <span class="tweet-count" id="tweet-count">0</span>
+    </header>
+
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search saved tweets..." autocomplete="off">
+    </div>
+
+    <div class="actions">
+      <button id="export-btn" class="btn btn-primary">Export .md</button>
+      <button id="copy-btn" class="btn btn-secondary">Copy All</button>
+      <button id="clear-btn" class="btn btn-danger">Clear</button>
+    </div>
+
+    <div class="tweet-list" id="tweet-list"></div>
+
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <div class="empty-icon">&#9733;</div>
+      <p class="empty-title">No tweets saved yet</p>
+      <p class="empty-text">Right-click any tweet on Twitter/X and select<br><strong>"Save to ContX"</strong></p>
+    </div>
+
+    <footer class="footer">
+      <a href="#" id="welcome-link">Setup Guide</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

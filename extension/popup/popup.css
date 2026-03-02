@@ -1,0 +1,248 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 380px;
+  max-height: 520px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #15202b;
+  color: #e7e9ea;
+  font-size: 14px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  max-height: 520px;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #38444d;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header h1 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.logo {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+}
+
+.tweet-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  background: #3B82F6;
+  padding: 3px 10px;
+  border-radius: 12px;
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Search */
+.search-container {
+  padding: 10px 16px;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 9px 14px;
+  border-radius: 20px;
+  border: 1px solid #38444d;
+  background: #253341;
+  color: #e7e9ea;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-container input:focus {
+  border-color: #3B82F6;
+}
+
+.search-container input::placeholder {
+  color: #8899a6;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 10px;
+}
+
+.btn {
+  flex: 1;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn:hover { opacity: 0.85; }
+.btn:active { opacity: 0.7; }
+
+.btn-primary {
+  background: #3B82F6;
+  color: white;
+}
+
+.btn-secondary {
+  background: #253341;
+  color: #e7e9ea;
+  border: 1px solid #38444d;
+}
+
+.btn-danger {
+  background: #253341;
+  color: #ef4444;
+  border: 1px solid #38444d;
+}
+
+/* Tweet list */
+.tweet-list {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 320px;
+  border-top: 1px solid #38444d;
+}
+
+.tweet-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #2a3a4a;
+  transition: background 0.12s;
+}
+
+.tweet-item:hover {
+  background: #1c2b3a;
+}
+
+.tweet-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.tweet-author {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.tweet-handle {
+  color: #8899a6;
+  font-size: 12px;
+  margin-left: 4px;
+}
+
+.tweet-date {
+  font-size: 11px;
+  color: #8899a6;
+}
+
+.tweet-text {
+  font-size: 13px;
+  line-height: 1.45;
+  color: #d1d5db;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.tweet-tags {
+  display: flex;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.tweet-tag {
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: #253341;
+  color: #8899a6;
+}
+
+.tweet-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.tweet-action-btn {
+  background: none;
+  border: none;
+  color: #8899a6;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: color 0.15s;
+}
+
+.tweet-action-btn:hover { color: #3B82F6; }
+.tweet-action-btn.delete:hover { color: #ef4444; }
+
+/* Empty state */
+.empty-state {
+  padding: 48px 16px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+  color: #3B82F6;
+}
+
+.empty-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.empty-text {
+  font-size: 13px;
+  color: #8899a6;
+  line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+  padding: 10px 16px;
+  text-align: center;
+  border-top: 1px solid #38444d;
+  font-size: 11px;
+}
+
+.footer a {
+  color: #3B82F6;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Scrollbar */
+.tweet-list::-webkit-scrollbar { width: 5px; }
+.tweet-list::-webkit-scrollbar-track { background: #15202b; }
+.tweet-list::-webkit-scrollbar-thumb { background: #38444d; border-radius: 3px; }
