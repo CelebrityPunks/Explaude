@@ -242,6 +242,43 @@ body {
   text-decoration: underline;
 }
 
+/* Folder bar */
+.folder-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #1a2734;
+  border-top: 1px solid #38444d;
+  font-size: 11px;
+}
+
+.folder-bar-text {
+  color: #8899a6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.folder-bar.active .folder-bar-text { color: #22c55e; }
+.folder-bar.warning .folder-bar-text { color: #f59e0b; }
+
+.folder-bar-btn {
+  background: #253341;
+  color: #3B82F6;
+  border: 1px solid #38444d;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+.folder-bar-btn:hover { background: #2a3f52; }
+
 /* Scrollbar */
 .tweet-list::-webkit-scrollbar { width: 5px; }
 .tweet-list::-webkit-scrollbar-track { background: #15202b; }

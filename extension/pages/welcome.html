@@ -17,147 +17,66 @@
       padding: 48px 24px;
     }
 
-    .page {
-      max-width: 600px;
-      width: 100%;
-    }
+    .page { max-width: 600px; width: 100%; }
 
-    /* Hero */
-    .hero {
-      text-align: center;
-      margin-bottom: 48px;
-    }
+    .hero { text-align: center; margin-bottom: 48px; }
+    .hero-icon { font-size: 48px; margin-bottom: 16px; color: #3B82F6; }
+    .hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .hero h1 span { color: #3B82F6; }
+    .hero p { font-size: 17px; color: #8899a6; line-height: 1.5; }
 
-    .hero-icon {
-      font-size: 48px;
-      margin-bottom: 16px;
-      color: #3B82F6;
-    }
-
-    .hero h1 {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 12px;
-    }
-
-    .hero h1 span {
-      color: #3B82F6;
-    }
-
-    .hero p {
-      font-size: 17px;
-      color: #8899a6;
-      line-height: 1.5;
-    }
-
-    /* Steps */
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      margin-bottom: 48px;
-    }
+    .steps { display: flex; flex-direction: column; gap: 32px; margin-bottom: 48px; }
 
     .step {
-      background: #1a2734;
-      border-radius: 12px;
-      padding: 24px;
-      border: 1px solid #2a3a4a;
+      background: #1a2734; border-radius: 12px;
+      padding: 24px; border: 1px solid #2a3a4a;
     }
 
     .step-number {
-      display: inline-block;
-      width: 28px;
-      height: 28px;
-      background: #3B82F6;
-      color: white;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 28px;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 12px;
+      display: inline-block; width: 28px; height: 28px;
+      background: #3B82F6; color: white; border-radius: 50%;
+      text-align: center; line-height: 28px;
+      font-size: 14px; font-weight: 700; margin-bottom: 12px;
     }
 
-    .step h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
+    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 14px; color: #8899a6; line-height: 1.5; }
 
-    .step p {
-      font-size: 14px;
-      color: #8899a6;
-      line-height: 1.5;
-    }
-
-    /* Claude setup prompt */
-    .claude-prompt {
-      background: #0d1620;
-      border: 1px solid #38444d;
-      border-radius: 8px;
-      padding: 16px;
-      margin-top: 12px;
+    .command-block {
+      background: #0d1620; border: 1px solid #38444d;
+      border-radius: 8px; padding: 16px; margin-top: 14px;
       position: relative;
       font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      font-size: 13px;
-      line-height: 1.6;
-      color: #d1d5db;
-      white-space: pre-wrap;
-      word-break: break-word;
+      font-size: 14px; line-height: 1.6; color: #22c55e;
+      white-space: pre-wrap; word-break: break-all;
     }
 
-    .copy-prompt-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #3B82F6;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      padding: 6px 14px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
+    .copy-btn {
+      position: absolute; top: 8px; right: 8px;
+      background: #3B82F6; color: white; border: none;
+      border-radius: 6px; padding: 6px 14px;
+      font-size: 12px; font-weight: 600; cursor: pointer;
       transition: opacity 0.15s;
     }
 
-    .copy-prompt-btn:hover { opacity: 0.85; }
+    .copy-btn:hover { opacity: 0.85; }
 
-    .path-note {
-      margin-top: 10px;
-      font-size: 12px;
-      color: #6b7280;
+    .hint {
+      margin-top: 10px; font-size: 12px; color: #6b7280;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
-    /* CTA */
-    .cta {
-      text-align: center;
-    }
+    .cta { text-align: center; }
 
     .cta-btn {
-      display: inline-block;
-      background: #3B82F6;
-      color: white;
-      border: none;
-      border-radius: 24px;
-      padding: 14px 36px;
-      font-size: 16px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: opacity 0.15s;
-      text-decoration: none;
+      display: inline-block; background: #3B82F6; color: white;
+      border: none; border-radius: 24px; padding: 14px 36px;
+      font-size: 16px; font-weight: 700; cursor: pointer;
+      transition: opacity 0.15s; text-decoration: none;
     }
 
     .cta-btn:hover { opacity: 0.85; }
-
-    .cta p {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #6b7280;
-    }
+    .cta p { margin-top: 12px; font-size: 13px; color: #6b7280; }
   </style>
 </head>
 <body>
@@ -171,23 +90,23 @@
     <div class="steps">
       <div class="step">
         <div class="step-number">1</div>
-        <h3>Save any tweet</h3>
-        <p>Right-click on any tweet on Twitter/X and select <strong>"Save to ContX"</strong>. The tweet text, author, and link are captured instantly.</p>
+        <h3>Connect to Claude</h3>
+        <p>Paste this command into Claude Code. It installs the bridge that lets ContX save tweets directly to your machine — no popups, no dialogs, fully automatic.</p>
+        <div class="command-block" id="setup-command">npx contx setup --id=<span id="ext-id">loading...</span></div>
+        <button class="copy-btn" id="copy-cmd-btn">Copy</button>
+        <div class="hint">Claude will run this for you. It takes about 5 seconds.</div>
       </div>
 
       <div class="step">
         <div class="step-number">2</div>
-        <h3>Connect to Claude</h3>
-        <p>Copy the prompt below and paste it into Claude Code. Claude will configure itself to read your saved tweets automatically.</p>
-        <div class="claude-prompt" id="claude-prompt">I installed the ContX Chrome extension. My saved tweets auto-export to <span id="path-display">~/Downloads/contx/tweets.md</span> — please configure your memory to read this file whenever I ask about saved tweets or bookmarks.</div>
-        <button class="copy-prompt-btn" id="copy-prompt-btn">Copy</button>
-        <div class="path-note" id="path-note"></div>
+        <h3>Restart Chrome</h3>
+        <p>After setup, close and reopen Chrome so it picks up the new native messaging host.</p>
       </div>
 
       <div class="step">
         <div class="step-number">3</div>
-        <h3>Use forever</h3>
-        <p>Every tweet you save auto-exports to a markdown file. Ask Claude <em>"check that tweet I saved about agents"</em> and it just works.</p>
+        <h3>Save any tweet</h3>
+        <p>Right-click on any tweet on Twitter/X and select <strong>"Save to ContX"</strong>. Tweets auto-save to <code>~/.contx/tweets.md</code> and Claude can read them anytime.</p>
       </div>
     </div>
 

@@ -13,7 +13,7 @@
     "contextMenus",
     "storage",
     "activeTab",
-    "downloads",
+    "nativeMessaging",
     "scripting"
   ],
   "background": {

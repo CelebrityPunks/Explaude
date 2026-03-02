@@ -1,5 +1,7 @@
 // ContX — Service Worker
-// Handles context menu, message routing, storage, auto-export, and notifications
+// Handles context menu, message routing, storage, and native messaging export
+
+const NATIVE_HOST = 'com.contx.native';
 
 // --- Context Menu Setup ---
 
@@ -30,14 +32,12 @@ chrome.contextMenus.onClicked.addListener(async (info, tab) => {
     const response = await chrome.tabs.sendMessage(tab.id, { action: 'scrape-tweet' });
     await handleScrapedTweet(response, tab.id);
   } catch (err) {
-    // Content script may not be injected yet (page loaded before install)
     if (err.message?.includes('Receiving end does not exist')) {
       try {
         await chrome.scripting.executeScript({
           target: { tabId: tab.id },
           files: ['content-scripts/twitter-scraper.js']
         });
-        // Brief delay for script to initialize
         await new Promise(r => setTimeout(r, 150));
         const response = await chrome.tabs.sendMessage(tab.id, { action: 'scrape-tweet' });
         await handleScrapedTweet(response, tab.id);
@@ -59,7 +59,6 @@ async function handleScrapedTweet(response, tabId) {
   const { tweets } = await chrome.storage.local.get(['tweets']);
   const tweetList = tweets || [];
 
-  // Deduplicate
   if (tweetList.find(t => t.id === response.data.id)) {
     showNotification(tabId, 'duplicate', 'Already saved!');
     return;
@@ -68,75 +67,29 @@ async function handleScrapedTweet(response, tabId) {
   tweetList.unshift(response.data);
   await chrome.storage.local.set({ tweets: tweetList });
   updateBadge(tweetList.length);
-  autoExport(tweetList);
   showNotification(tabId, 'success', `Saved tweet by ${response.data.handle}`);
+
+  // Auto-export via native messaging
+  autoExport(tweetList);
 }
 
-// --- Auto-Export to ~/Downloads/contx/tweets.md ---
+// --- Auto-Export via Native Messaging ---
 
-async function autoExport(tweets) {
-  const markdown = generateMarkdown(tweets);
-  const blob = new Blob([markdown], { type: 'text/markdown' });
-  const url = URL.createObjectURL(blob);
-
-  try {
-    await chrome.downloads.download({
-      url: url,
-      filename: 'contx/tweets.md',
-      saveAs: false,
-      conflictAction: 'overwrite'
-    });
-  } catch (err) {
-    console.error('[ContX] Auto-export failed:', err);
-  }
-}
-
-function generateMarkdown(tweets) {
-  let md = '# ContX — Saved Tweets\n\n';
-  md += 'Tweets saved via ContX Chrome extension. Newest first.\n\n';
-  md += '---\n\n';
-
-  for (const tweet of tweets) {
-    md += tweetToMarkdown(tweet) + '\n';
-  }
-
-  return md;
-}
-
-function tweetToMarkdown(tweet) {
-  const title = (tweet.text || '').replace(/\n/g, ' ').trim();
-  const shortTitle = title.length <= 60 ? title : title.substring(0, 57) + '...';
-  const dateSaved = tweet.savedAt ? tweet.savedAt.split('T')[0] : 'unknown';
-
-  let md = `## ${shortTitle}\n`;
-  md += `- **Date saved:** ${dateSaved}\n`;
-  md += `- **Source:** ${tweet.url}\n`;
-  md += `- **Author:** ${tweet.handle}\n`;
-  md += `- **Author name:** ${tweet.author}\n`;
-
-  if (tweet.timestamp) {
-    const tweetDate = tweet.timestamp.split('T')[0];
-    md += `- **Tweet date:** ${tweetDate}\n`;
-  }
-
-  if (tweet.hasMedia) {
-    md += `- **Media:** ${tweet.mediaCount} ${tweet.mediaTypes.join(', ')}\n`;
-  }
-
-  const quotedText = (tweet.text || '').split('\n').join('\n> ');
-  md += `\n> ${quotedText}\n`;
-
-  if (tweet.quoteTweet) {
-    md += `\n> **Quoting ${tweet.quoteTweet.handle}:**\n`;
-    const qtText = tweet.quoteTweet.text.split('\n').join('\n> > ');
-    md += `> > ${qtText}\n`;
-    if (tweet.quoteTweet.url) {
-      md += `> > Source: ${tweet.quoteTweet.url}\n`;
+function autoExport(tweets) {
+  chrome.runtime.sendNativeMessage(
+    NATIVE_HOST,
+    { action: 'write-tweets', tweets: tweets },
+    (response) => {
+      if (chrome.runtime.lastError) {
+        // Native host not installed — that's OK, tweets are still in chrome.storage
+        console.log('[ContX] Native host not available:', chrome.runtime.lastError.message);
+        return;
+      }
+      if (response && !response.success) {
+        console.error('[ContX] Native write failed:', response.error);
+      }
     }
-  }
-
-  md += '\n---\n';
-  return md;
+  );
 }
 
 // --- Badge ---
@@ -150,7 +103,6 @@ function updateBadge(count) {
   }
 }
 
-// Initialize badge on startup
 chrome.storage.local.get(['tweets'], (result) => {
   updateBadge(result.tweets?.length || 0);
 });

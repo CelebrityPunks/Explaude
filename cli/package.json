@@ -1,0 +1,10 @@
+{
+  "name": "contx",
+  "version": "1.0.0",
+  "description": "Setup tool for ContX Chrome Extension — saves tweets as context for Claude Code",
+  "bin": {
+    "contx": "./bin/contx.js"
+  },
+  "keywords": ["claude", "twitter", "chrome-extension", "ai-context", "tweets"],
+  "license": "MIT"
+}
