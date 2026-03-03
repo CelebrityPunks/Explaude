@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       await chrome.storage.local.set({ tweets: [] });
       renderTweets([]);
       chrome.runtime.sendMessage({ action: 'update-badge', count: 0 });
+      chrome.runtime.sendMessage({ action: 'trigger-export' });
     }
   });
 
