@@ -9,109 +9,197 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #0f1923;
-      color: #e7e9ea;
+      background: #0A0A0A;
+      color: #E8E8E8;
       min-height: 100vh;
       display: flex;
       justify-content: center;
       padding: 48px 24px;
     }
 
-    .page { max-width: 600px; width: 100%; }
+    .page { max-width: 620px; width: 100%; }
 
-    .hero { text-align: center; margin-bottom: 48px; }
-    .hero-icon { font-size: 48px; margin-bottom: 16px; color: #3B82F6; }
-    .hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
-    .hero h1 span { color: #3B82F6; }
-    .hero p { font-size: 17px; color: #8899a6; line-height: 1.5; }
+    /* Hero */
+    .hero { text-align: center; margin-bottom: 52px; }
 
-    .steps { display: flex; flex-direction: column; gap: 32px; margin-bottom: 48px; }
+    .hero-logo {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 4px 24px rgba(242, 140, 56, 0.25));
+    }
+
+    .hero h1 {
+      font-size: 36px; font-weight: 800;
+      letter-spacing: -0.5px; margin-bottom: 14px;
+    }
+
+    .hero h1 span { color: #F28C38; }
+
+    .hero p {
+      font-size: 17px; color: #888;
+      line-height: 1.6; max-width: 420px; margin: 0 auto;
+    }
+
+    /* Steps */
+    .steps {
+      display: flex; flex-direction: column;
+      gap: 24px; margin-bottom: 52px;
+    }
 
     .step {
-      background: #1a2734; border-radius: 12px;
-      padding: 24px; border: 1px solid #2a3a4a;
+      background: #141414;
+      border-radius: 14px;
+      padding: 28px;
+      border: 1px solid #222;
+      transition: border-color 0.2s;
+    }
+
+    .step:hover { border-color: #333; }
+
+    .step-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 12px;
     }
 
     .step-number {
-      display: inline-block; width: 28px; height: 28px;
-      background: #3B82F6; color: white; border-radius: 50%;
-      text-align: center; line-height: 28px;
-      font-size: 14px; font-weight: 700; margin-bottom: 12px;
+      width: 32px; height: 32px;
+      background: #F28C38; color: #0A0A0A;
+      border-radius: 50%; text-align: center;
+      line-height: 32px; font-size: 15px;
+      font-weight: 800; flex-shrink: 0;
     }
 
-    .step h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-    .step p { font-size: 14px; color: #8899a6; line-height: 1.5; }
+    .step h3 {
+      font-size: 18px; font-weight: 700;
+      color: #E8E8E8;
+    }
 
+    .step p {
+      font-size: 14px; color: #777;
+      line-height: 1.6; margin-left: 46px;
+    }
+
+    .step p strong { color: #F28C38; }
+    .step p code {
+      background: #1A1A1A; padding: 2px 7px;
+      border-radius: 4px; font-size: 13px;
+      color: #F28C38; border: 1px solid #2A2A2A;
+    }
+
+    /* Command block */
     .command-block {
-      background: #0d1620; border: 1px solid #38444d;
-      border-radius: 8px; padding: 16px; margin-top: 14px;
+      background: #0D0D0D;
+      border: 1px solid #2A2A2A;
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin: 16px 0 0 46px;
       position: relative;
       font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-      font-size: 14px; line-height: 1.6; color: #22c55e;
+      font-size: 14px; line-height: 1.6;
+      color: #F28C38;
       white-space: pre-wrap; word-break: break-all;
     }
 
-    .copy-btn {
-      position: absolute; top: 8px; right: 8px;
-      background: #3B82F6; color: white; border: none;
-      border-radius: 6px; padding: 6px 14px;
-      font-size: 12px; font-weight: 600; cursor: pointer;
-      transition: opacity 0.15s;
+    .command-block::before {
+      content: '$';
+      color: #555;
+      margin-right: 8px;
     }
 
-    .copy-btn:hover { opacity: 0.85; }
+    .copy-btn {
+      position: absolute; top: 10px; right: 10px;
+      background: #F28C38; color: #0A0A0A;
+      border: none; border-radius: 6px;
+      padding: 6px 16px; font-size: 12px;
+      font-weight: 700; cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:hover {
+      background: #F5A05E;
+      transform: translateY(-1px);
+    }
 
     .hint {
-      margin-top: 10px; font-size: 12px; color: #6b7280;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 10px 0 0 46px;
+      font-size: 12px; color: #555;
     }
 
+    /* CTA */
     .cta { text-align: center; }
 
     .cta-btn {
-      display: inline-block; background: #3B82F6; color: white;
-      border: none; border-radius: 24px; padding: 14px 36px;
-      font-size: 16px; font-weight: 700; cursor: pointer;
-      transition: opacity 0.15s; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #F28C38; color: #0A0A0A;
+      border: none; border-radius: 28px;
+      padding: 16px 40px;
+      font-size: 16px; font-weight: 700;
+      cursor: pointer; transition: all 0.2s;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(242, 140, 56, 0.3);
     }
 
-    .cta-btn:hover { opacity: 0.85; }
-    .cta p { margin-top: 12px; font-size: 13px; color: #6b7280; }
+    .cta-btn:hover {
+      background: #F5A05E;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(242, 140, 56, 0.4);
+    }
+
+    .cta p {
+      margin-top: 14px;
+      font-size: 13px; color: #555;
+    }
+
+    /* Divider */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #2A2A2A, transparent);
+      margin: 0 0 52px;
+    }
   </style>
 </head>
 <body>
   <div class="page">
     <div class="hero">
-      <div class="hero-icon">&#9733;</div>
+      <img src="../icons/logo.png" alt="Explaude" class="hero-logo">
       <h1>Welcome to <span>Explaude</span></h1>
       <p>Save tweets from your feed. Use them as context in Claude.</p>
     </div>
 
+    <div class="divider"></div>
+
     <div class="steps">
       <div class="step">
-        <div class="step-number">1</div>
-        <h3>Connect to Claude</h3>
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h3>Connect to Claude</h3>
+        </div>
         <p>Paste this command into Claude Code. It installs the bridge that lets Explaude save tweets directly to your machine — no popups, no dialogs, fully automatic.</p>
         <div class="command-block" id="setup-command">npx explaude setup --id=<span id="ext-id">loading...</span></div>
         <button class="copy-btn" id="copy-cmd-btn">Copy</button>
-        <div class="hint">Claude will run this for you. It takes about 5 seconds.</div>
+        <div class="hint">Claude will run this for you. Takes about 5 seconds.</div>
       </div>
 
       <div class="step">
-        <div class="step-number">2</div>
-        <h3>Restart Chrome</h3>
-        <p>After setup, close and reopen Chrome so it picks up the new native messaging host.</p>
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h3>Restart Chrome</h3>
+        </div>
+        <p>Close and reopen Chrome so it picks up the native messaging bridge.</p>
       </div>
 
       <div class="step">
-        <div class="step-number">3</div>
-        <h3>Save any tweet</h3>
-        <p>Right-click on any tweet on Twitter/X and select <strong>"Save to Explaude"</strong>. Tweets auto-save to <code>~/.explaude/tweets.md</code> and Claude can read them anytime.</p>
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h3>Save any tweet</h3>
+        </div>
+        <p>Right-click any tweet on Twitter/X and select <strong>"Save to Explaude"</strong>. Tweets auto-save to <code>~/.explaude/tweets.md</code> — Claude can read them anytime.</p>
       </div>
     </div>
 
     <div class="cta">
-      <button class="cta-btn" id="start-btn">Start saving tweets</button>
+      <button class="cta-btn" id="start-btn">Start saving tweets &#8594;</button>
       <p>Opens Twitter/X in a new tab</p>
     </div>
   </div>

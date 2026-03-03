@@ -97,7 +97,7 @@ function autoExport(tweets) {
 function updateBadge(count) {
   if (count > 0) {
     chrome.action.setBadgeText({ text: String(count) });
-    chrome.action.setBadgeBackgroundColor({ color: '#3B82F6' });
+    chrome.action.setBadgeBackgroundColor({ color: '#F28C38' });
   } else {
     chrome.action.setBadgeText({ text: '' });
   }
@@ -110,7 +110,7 @@ chrome.storage.local.get(['tweets'], (result) => {
 // --- Toast Notifications ---
 
 function showNotification(tabId, type, message) {
-  const colors = { success: '#22c55e', error: '#ef4444', duplicate: '#f59e0b' };
+  const colors = { success: '#F28C38', error: '#ef4444', duplicate: '#F5A05E' };
   const icons = { success: '\u2713', error: '\u2717', duplicate: '\u26A0' };
 
   chrome.scripting.executeScript({
