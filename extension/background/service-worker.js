@@ -110,7 +110,7 @@ chrome.storage.local.get(['tweets'], (result) => {
 // --- Toast Notifications ---
 
 function showNotification(tabId, type, message) {
-  const colors = { success: '#F28C38', error: '#ef4444', duplicate: '#F5A05E' };
+  const colors = { success: '#22c55e', error: '#ef4444', duplicate: '#F5A05E' };
   const icons = { success: '\u2713', error: '\u2717', duplicate: '\u26A0' };
 
   chrome.scripting.executeScript({
