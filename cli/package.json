@@ -1,6 +1,6 @@
 {
   "name": "explaude",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Setup tool for Explaude Chrome Extension — saves tweets as context for Claude Code",
   "bin": {
     "explaude": "./bin/explaude.js"

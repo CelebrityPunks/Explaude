@@ -49,10 +49,19 @@ function setup() {
   }
   console.log('  [1/5] Created ~/.explaude/');
 
-  // 2. Copy native host script
+  // 2. Copy native host script and fix shebang with absolute node path
   const hostSrc = path.join(__dirname, '..', 'native-host', 'host.js');
   const hostDst = path.join(CONTX_DIR, 'host.js');
   fs.copyFileSync(hostSrc, hostDst);
+
+  // Chrome doesn't inherit the user's shell PATH, so #!/usr/bin/env node won't work.
+  // Replace the shebang with the absolute path to node.
+  if (PLATFORM !== 'win32') {
+    const nodePath = process.execPath;
+    let hostContent = fs.readFileSync(hostDst, 'utf8');
+    hostContent = hostContent.replace(/^#!.*\n/, `#!${nodePath}\n`);
+    fs.writeFileSync(hostDst, hostContent, 'utf8');
+  }
   console.log('  [2/5] Installed native messaging host');
 
   // 3. Create launcher (Windows needs .bat, Mac/Linux use shebang)
